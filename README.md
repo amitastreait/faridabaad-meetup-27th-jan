@@ -45,6 +45,12 @@ After making the changes, you will be able to see that the deployment is sucess.
 
 ![image](https://github.com/amitastreait/faridabaad-meetup-27th-jan/assets/14299807/1388b12f-b563-406d-b8e8-e8d57467f92f)
 
+Hit the Url that you have deployed as part of the application and see the outcome
+
+<img width="764" alt="image" src="https://github.com/amitastreait/faridabaad-meetup-27th-jan/assets/14299807/5d0fdc29-4345-4d27-b0d7-3aa34fec4e1b">
+<img width="1343" alt="image" src="https://github.com/amitastreait/faridabaad-meetup-27th-jan/assets/14299807/2dd5067f-0269-469f-81c3-537f9e3491af">
+
+
 ## Configure the CloudHub Deployment Strategy (pom.xml)
 
 As we waned to automate the Mule project deployment using Maven commands, the first step is to modify our `pom.xml` file and add the Cloudhub deployment strategy. Open your `pom.xml` file and inside the `plugin` element with the `groupId` equal to `org.mule.tools.maven` add the configuration tag like below
