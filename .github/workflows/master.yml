@@ -34,3 +34,16 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Deploy to Sandbox
+        id: deploy-mule-artifacts
+        run: |
+          # Test the Deployment
+          mvn clean package install
+          mvn clean deploy -DmuleDeploy
+          
+          # Deployment using Username & Password
+          # mvn clean package deploy -DmuleDeploy -DskipTests -s .maven/settings.xml -Danypoint.password=${{ env.ANYPOINT_PASSWORD }} -Danypoint.username=${{ env.ANYPOINT_USERNAME }} -Denv=Sandbox -DbusinessGroup=PantherSchools -DwokerType=MICRO -DworkerSize=1 -Dmule.version=4.4.0 -Dsecure.key=${{env.SECURE_KEY}} -DenvProp=dev
+          
+          # Deployment using Connected Application
+          #mvn clean package deploy -DmuleDeploy -DskipTests -s .maven/settings.xml -Dapp.id=${{ env.CLIENT_ID }} -Dapp.secret=${{ env.CLIENT_SECRET }} -Denv=Sandbox -DbusinessGroup=PantherSchools -DwokerType=MICRO -DworkerSize=1 -Dmule.version=4.4.0 -Dsecure.key=${{env.SECURE_KEY}} -DenvProp=dev
