@@ -22,6 +22,13 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+      - uses: act10ns/slack@v2
+        with: 
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
+      
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
@@ -48,3 +55,10 @@ jobs:
           
           # Deployment using Connected Application
           #mvn clean package deploy -DmuleDeploy -DskipTests -s .maven/settings.xml -Dapp.id=${{ env.CLIENT_ID }} -Dapp.secret=${{ env.CLIENT_SECRET }} -Denv=Sandbox -DbusinessGroup=PantherSchools -DwokerType=MICRO -DworkerSize=1 -Dmule.version=4.4.0 -Dsecure.key=${{env.SECURE_KEY}} -DenvProp=dev
+
+      - uses: act10ns/slack@v2
+        with: 
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
+        
