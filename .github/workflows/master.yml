@@ -31,14 +31,20 @@ jobs:
         if: always()
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Checkout to Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        id: script
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
+        id: ml-script
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
@@ -48,6 +54,7 @@ jobs:
         run: |
           # Test the Deployment
           # This is a known issue when using Mule Maven Plugin 3.8.x.
+          # changed the version to 3.4.0
           # mvn clean package install
           # mvn clean deploy -DmuleDeploy
           
@@ -61,5 +68,6 @@ jobs:
         with: 
           status: ${{ job.status }}
           steps: ${{ toJson(steps) }}
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
         
