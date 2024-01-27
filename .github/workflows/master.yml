@@ -24,9 +24,10 @@ jobs:
     steps:
 
       - uses: act10ns/slack@v2
-        with: 
-          status: ${{ job.status }}
-          steps: ${{ toJson(steps) }}
+        with:
+            status: ${{ job.status }}
+            webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+            message: Deploying {{ env.GITHUB_REF_NAME }} branch
         if: always()
       
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
