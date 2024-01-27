@@ -39,7 +39,8 @@ jobs:
         id: deploy-mule-artifacts
         run: |
           # Test the Deployment
-          mvn clean package install
+          # This is a known issue when using Mule Maven Plugin 3.8.x.
+          # mvn clean package install
           mvn clean deploy -DmuleDeploy
           
           # Deployment using Username & Password
